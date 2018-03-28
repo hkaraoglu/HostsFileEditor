@@ -97,15 +97,14 @@ namespace HostsFileEditor
             this.menuContextCut = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuContextDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
             this.menuContextDuplicate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuContextDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextMoveUp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextMoveDown = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextInsertAbove = new System.Windows.Forms.ToolStripMenuItem();
             this.menuContextInsertBelow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuUncheck = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSourceView = new System.Windows.Forms.BindingSource(this.components);
@@ -132,8 +131,9 @@ namespace HostsFileEditor
             this.menuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.menuDuplicate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMoveUp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMoveDown = new System.Windows.Forms.ToolStripMenuItem();
             this.insertRowAboveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,6 +150,8 @@ namespace HostsFileEditor
             this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPingIPs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRemoveDefaultText = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new HostsFileEditor.Controls.ToolStripEx();
             this.buttonSave = new System.Windows.Forms.ToolStripButton();
             this.buttonRefresh = new System.Windows.Forms.ToolStripButton();
@@ -174,12 +176,12 @@ namespace HostsFileEditor
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuContextEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
             this.menuContextDisable = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.bindingSourceHostEntries = new System.Windows.Forms.BindingSource(this.components);
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
             toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
@@ -409,6 +411,18 @@ namespace HostsFileEditor
             resources.ApplyResources(this.menuContextPaste, "menuContextPaste");
             this.menuContextPaste.Click += new System.EventHandler(this.OnPasteClick);
             // 
+            // toolStripSeparator32
+            // 
+            this.toolStripSeparator32.Name = "toolStripSeparator32";
+            resources.ApplyResources(this.toolStripSeparator32, "toolStripSeparator32");
+            // 
+            // menuContextDuplicate
+            // 
+            this.menuContextDuplicate.Image = global::HostsFileEditor.Properties.Resources.Duplicate;
+            this.menuContextDuplicate.Name = "menuContextDuplicate";
+            resources.ApplyResources(this.menuContextDuplicate, "menuContextDuplicate");
+            this.menuContextDuplicate.Click += new System.EventHandler(this.OnDuplicateClick);
+            // 
             // toolStripSeparator22
             // 
             toolStripSeparator22.Name = "toolStripSeparator22";
@@ -420,13 +434,6 @@ namespace HostsFileEditor
             this.menuContextDelete.Name = "menuContextDelete";
             resources.ApplyResources(this.menuContextDelete, "menuContextDelete");
             this.menuContextDelete.Click += new System.EventHandler(this.OnDeleteClick);
-            // 
-            // menuContextDuplicate
-            // 
-            this.menuContextDuplicate.Image = global::HostsFileEditor.Properties.Resources.Duplicate;
-            this.menuContextDuplicate.Name = "menuContextDuplicate";
-            resources.ApplyResources(this.menuContextDuplicate, "menuContextDuplicate");
-            this.menuContextDuplicate.Click += new System.EventHandler(this.OnDuplicateClick);
             // 
             // toolStripSeparator23
             // 
@@ -471,11 +478,6 @@ namespace HostsFileEditor
             this.toolStripSeparator31.Name = "toolStripSeparator31";
             resources.ApplyResources(this.toolStripSeparator31, "toolStripSeparator31");
             // 
-            // toolStripSeparator32
-            // 
-            this.toolStripSeparator32.Name = "toolStripSeparator32";
-            resources.ApplyResources(this.toolStripSeparator31, "toolStripSeparator32");
-            // 
             // contextMenuCheck
             // 
             this.contextMenuCheck.Image = global::HostsFileEditor.Properties.Resources.Check;
@@ -515,6 +517,9 @@ namespace HostsFileEditor
             this.dataGridViewArchive.ReadOnly = true;
             this.dataGridViewArchive.RowHeadersVisible = false;
             this.dataGridViewArchive.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewArchive.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArchive_CellContentClick);
+            this.dataGridViewArchive.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArchive_CellContentDoubleClick);
+            this.dataGridViewArchive.SelectionChanged += new System.EventHandler(this.dataGridViewArchive_SelectionChanged);
             // 
             // fileNameDataGridViewTextBoxColumn
             // 
@@ -682,7 +687,7 @@ namespace HostsFileEditor
             this.menuCut,
             this.menuCopy,
             this.menuPaste,
-            toolStripSeparator33,
+            this.toolStripSeparator33,
             this.menuDuplicate,
             toolStripSeparator5,
             this.menuDelete,
@@ -750,6 +755,18 @@ namespace HostsFileEditor
             resources.ApplyResources(this.menuPaste, "menuPaste");
             this.menuPaste.Click += new System.EventHandler(this.OnPasteClick);
             // 
+            // toolStripSeparator33
+            // 
+            this.toolStripSeparator33.Name = "toolStripSeparator33";
+            resources.ApplyResources(this.toolStripSeparator33, "toolStripSeparator33");
+            // 
+            // menuDuplicate
+            // 
+            this.menuDuplicate.Image = global::HostsFileEditor.Properties.Resources.Duplicate;
+            this.menuDuplicate.Name = "menuDuplicate";
+            resources.ApplyResources(this.menuDuplicate, "menuDuplicate");
+            this.menuDuplicate.Click += new System.EventHandler(this.OnDuplicateClick);
+            // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
@@ -761,13 +778,6 @@ namespace HostsFileEditor
             this.menuDelete.Name = "menuDelete";
             resources.ApplyResources(this.menuDelete, "menuDelete");
             this.menuDelete.Click += new System.EventHandler(this.OnDeleteClick);
-            // 
-            // menuDuplicate
-            // 
-            this.menuDuplicate.Image = global::HostsFileEditor.Properties.Resources.Duplicate;
-            this.menuDuplicate.Name = "menuDuplicate";
-            resources.ApplyResources(this.menuDuplicate, "menuDuplicate");
-            this.menuDuplicate.Click += new System.EventHandler(this.OnDuplicateClick);
             // 
             // toolStripSeparator6
             // 
@@ -904,6 +914,19 @@ namespace HostsFileEditor
             this.menuRemoveDefaultText.Name = "menuRemoveDefaultText";
             resources.ApplyResources(this.menuRemoveDefaultText, "menuRemoveDefaultText");
             this.menuRemoveDefaultText.Click += new System.EventHandler(this.OnRemoveDefaultTextClick);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnAboutClick);
             // 
             // toolStrip
             // 
@@ -1101,6 +1124,8 @@ namespace HostsFileEditor
             this.contextMenuTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuContextEdit,
             toolStripSeparator21,
+            this.contextMenuLoad,
+            this.toolStripSeparator34,
             this.menuContextDisable,
             toolStripSeparator20,
             this.contextMenuExit});
@@ -1112,6 +1137,17 @@ namespace HostsFileEditor
             this.menuContextEdit.Name = "menuContextEdit";
             resources.ApplyResources(this.menuContextEdit, "menuContextEdit");
             this.menuContextEdit.Click += new System.EventHandler(this.OnEditClick);
+            // 
+            // contextMenuLoad
+            // 
+            this.contextMenuLoad.Name = "contextMenuLoad";
+            resources.ApplyResources(this.contextMenuLoad, "contextMenuLoad");
+            this.contextMenuLoad.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuLoad_DropDownItemClicked);
+            // 
+            // toolStripSeparator34
+            // 
+            this.toolStripSeparator34.Name = "toolStripSeparator34";
+            resources.ApplyResources(this.toolStripSeparator34, "toolStripSeparator34");
             // 
             // menuContextDisable
             // 
@@ -1134,19 +1170,6 @@ namespace HostsFileEditor
             // bindingSourceHostEntries
             // 
             this.bindingSourceHostEntries.DataSource = typeof(HostsFileEditor.HostsEntryList);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnAboutClick);
             // 
             // MainForm
             // 
@@ -1298,6 +1321,8 @@ namespace HostsFileEditor
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openTextEditor;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuLoad;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator34;
     }
 }
 

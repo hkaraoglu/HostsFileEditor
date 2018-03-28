@@ -68,6 +68,8 @@ namespace HostsFileEditor
         /// </summary>
         private bool ignoreAddingNew;
 
+        private ToolStripMenuItem currentSelectedArchiveMenuItem;
+
         #endregion
 
         #region Constructors and Destructors
@@ -86,6 +88,29 @@ namespace HostsFileEditor
             this.columnComment.DefaultCellStyle.NullValue = null;
             this.columnIpAddress.DefaultCellStyle.NullValue = null;
             this.columnHostnames.DefaultCellStyle.NullValue = null;
+
+           
+        }
+
+        private void initContextMenuLoadList()
+        {
+            HostsArchive archive = this.dataGridViewArchive.CurrentHostsArchive;
+
+            if (archive != null)
+            {
+                this.contextMenuLoad.DropDownItems.Clear();
+                for (int i = 0; i < HostsArchiveList.Instance.Count; i++)
+                {
+                    HostsArchive hostsArchive = HostsArchiveList.Instance.ElementAt(i);
+                    ToolStripItem item = this.contextMenuLoad.DropDownItems.Add(hostsArchive.FileName);
+                    if(archive.FileName.Equals(hostsArchive.FileName))
+                    {
+                        ((ToolStripMenuItem)item).Checked = true;
+                        currentSelectedArchiveMenuItem = ((ToolStripMenuItem)item);
+                    }
+                    
+                }
+            }
         }
 
         #endregion
@@ -1085,5 +1110,64 @@ namespace HostsFileEditor
         }
 
         #endregion
+
+        private void dataGridViewArchive_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            HostsArchive archive = this.dataGridViewArchive.CurrentHostsArchive;
+
+            if (archive != null)
+            {
+                HostsFile.Instance.Import(archive.FilePath);
+            }
+
+            this.dataGridViewHostsEntries.CommitEdit(
+                DataGridViewDataErrorContexts.Commit);
+            HostsFile.Instance.Save();
+            HostsFile.Instance.Refresh();
+        }
+
+        private void contextMenuLoad_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            String archiveName =  e.ClickedItem.Text;
+            HostsArchive hostsArchive = HostsArchiveList.Instance.Single(p => p.FileName.Equals(archiveName));
+            HostsFile.Instance.Import(hostsArchive.FilePath);
+            this.dataGridViewHostsEntries.CommitEdit(
+               DataGridViewDataErrorContexts.Commit);
+            HostsFile.Instance.Save();
+            HostsFile.Instance.Refresh();
+
+            if(currentSelectedArchiveMenuItem != null)
+            {
+                currentSelectedArchiveMenuItem.Checked = false;
+            }
+            currentSelectedArchiveMenuItem = ((ToolStripMenuItem)e.ClickedItem);
+
+            this.dataGridViewArchive.Rows[HostsArchiveList.Instance.IndexOf(hostsArchive)].Selected = true;
+            currentSelectedArchiveMenuItem.Checked = true;
+        }
+
+        private void resetCheckedItems()
+        {
+            initContextMenuLoadList();
+        }
+
+
+        private void dataGridViewArchive_SelectionChanged(object sender, EventArgs e)
+        {
+            initContextMenuLoadList();
+        }
+
+        private void dataGridViewArchive_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            HostsArchive archive = this.dataGridViewArchive.CurrentHostsArchive;
+
+            if (archive != null)
+            {
+                HostsFile.Instance.Import(archive.FilePath);
+            }
+
+            this.dataGridViewHostsEntries.CommitEdit(
+                DataGridViewDataErrorContexts.Commit);
+        }
     }
 }

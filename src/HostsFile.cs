@@ -187,7 +187,7 @@ namespace HostsFileEditor
         #region Public Methods
 
         /// <summary>
-        /// The disable hosts file.
+        /// The ü.
         /// </summary>
         public static void DisableHostsFile()
         {
